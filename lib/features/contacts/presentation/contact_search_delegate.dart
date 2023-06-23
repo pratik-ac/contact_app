@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../data/contacts.dart';
 
 class ContactSearchDelegate extends SearchDelegate<String> {
-  List<Contacts>frnlist = MyContacts().frnDetail;
+  List<Contacts> frnlist = MyContacts().frnDetail;
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
@@ -39,8 +39,28 @@ class ContactSearchDelegate extends SearchDelegate<String> {
     return ListView.builder(
       itemCount: matchQuery.length,
       itemBuilder: (context, index) {
-        return ListTile(
+        /*return ListTile(
           title: Text(matchQuery[index].name),
+          subtitle: Text(matchQuery[index].phoneNumber),
+        );*/
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListTile(
+            leading: const Icon(
+              Icons.person,
+              color: Colors.red,
+            ),
+            minLeadingWidth: 20,
+            title: Text(matchQuery[index].name),
+            subtitle: Text(matchQuery[index].phoneNumber),
+            trailing: IconButton(
+              icon: const Icon(
+                Icons.call,
+                color: Colors.green,
+              ),
+              onPressed: () {},
+            ),
+          ),
         );
       },
     );
@@ -59,9 +79,30 @@ class ContactSearchDelegate extends SearchDelegate<String> {
     return ListView.builder(
       itemCount: matchQuery.length,
       itemBuilder: (context, index) {
-        return ListTile(
+        /*return ListTile(
           title: Text(matchQuery[index]),
+          subtitle: Text(frnlist[index].phoneNumber),
+        );*/
+                return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListTile(
+            leading: const Icon(
+              Icons.person,
+              color: Colors.red,
+            ),
+            minLeadingWidth: 20,
+            title: Text(matchQuery[index]),
+            subtitle: Text(frnlist[index].phoneNumber),
+            trailing: IconButton(
+              icon: const Icon(
+                Icons.call,
+                color: Colors.green,
+              ),
+              onPressed: () {},
+            ),
+          ),
         );
+        
       },
     );
   }
