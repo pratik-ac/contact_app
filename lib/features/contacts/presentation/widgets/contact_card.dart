@@ -8,7 +8,6 @@ class ContactDesign extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      //ContactCArds(contact[index].name,contacts[index].contact)
       padding: const EdgeInsets.all(12.0),
       child: Card(
         shape: RoundedRectangleBorder(
