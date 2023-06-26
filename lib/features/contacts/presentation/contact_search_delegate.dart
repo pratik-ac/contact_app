@@ -29,20 +29,25 @@ class ContactSearchDelegate extends SearchDelegate<String> {
   @override
   Widget buildResults(BuildContext context) {
     List<Contacts> matchQuery = [];
+    return searchResultList(match: matchQuery, friend: frnlist);
+  }
 
-    for (var fname in frnlist) {
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List<Contacts> matchQuery = [];
+    return searchResultList(match: matchQuery, friend: frnlist);
+  }
+
+  Widget searchResultList({required List<Contacts> match, required List<Contacts> friend}) {
+    List<Contacts> match = [];
+    for (var fname in friend) {
       if (fname.name.toLowerCase().contains(query.toLowerCase())) {
-        matchQuery.add(fname);
+        match.add(fname);
       }
     }
-
     return ListView.builder(
-      itemCount: matchQuery.length,
+      itemCount: match.length,
       itemBuilder: (context, index) {
-        /*return ListTile(
-          title: Text(matchQuery[index].name),
-          subtitle: Text(matchQuery[index].phoneNumber),
-        );*/
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: ListTile(
@@ -51,8 +56,8 @@ class ContactSearchDelegate extends SearchDelegate<String> {
               color: Colors.red,
             ),
             minLeadingWidth: 20,
-            title: Text(matchQuery[index].name),
-            subtitle: Text(matchQuery[index].phoneNumber),
+            title: Text(match[index].name),
+            subtitle: Text(friend[index].phoneNumber),
             trailing: IconButton(
               icon: const Icon(
                 Icons.call,
@@ -62,47 +67,6 @@ class ContactSearchDelegate extends SearchDelegate<String> {
             ),
           ),
         );
-      },
-    );
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    List<String> matchQuery = [];
-
-    for (var fname in frnlist) {
-      if (fname.name.toLowerCase().contains(query.toLowerCase())) {
-        matchQuery.add(fname.name);
-      }
-    }
-
-    return ListView.builder(
-      itemCount: matchQuery.length,
-      itemBuilder: (context, index) {
-        /*return ListTile(
-          title: Text(matchQuery[index]),
-          subtitle: Text(frnlist[index].phoneNumber),
-        );*/
-                return Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ListTile(
-            leading: const Icon(
-              Icons.person,
-              color: Colors.red,
-            ),
-            minLeadingWidth: 20,
-            title: Text(matchQuery[index]),
-            subtitle: Text(frnlist[index].phoneNumber),
-            trailing: IconButton(
-              icon: const Icon(
-                Icons.call,
-                color: Colors.green,
-              ),
-              onPressed: () {},
-            ),
-          ),
-        );
-        
       },
     );
   }
