@@ -1,3 +1,4 @@
+import 'package:contact_app/features/contacts/presentation/widgets/contact_card.dart';
 import 'package:flutter/material.dart';
 
 import '../data/contacts.dart';
@@ -24,41 +25,18 @@ class MyContacts extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Contacts"),
         actions: [
-          IconButton(onPressed: () {
-            showSearch(context: context, delegate: ContactSearchDelegate());
-          }, icon: const Icon(Icons.search)),
+          IconButton(
+              onPressed: () {
+                showSearch(context: context, delegate: ContactSearchDelegate());
+              },
+              icon: const Icon(Icons.search)),
         ],
       ),
       body: ListView.builder(
         itemCount: frnDetail.length,
         itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListTile(
-                  leading: const Icon(
-                    Icons.person,
-                    color: Colors.red,
-                  ),
-                  minLeadingWidth: 20,
-                  title: Text(frnDetail[index].name),
-                  subtitle: Text(frnDetail[index].phoneNumber),
-                  trailing: IconButton(
-                    icon: const Icon(
-                      Icons.call,
-                      color: Colors.green,
-                    ),
-                    onPressed: () {},
-                  ),
-                ),
-              ),
-            ),
-          );
+          return ContactDesign(
+              frnDetail[index].name, frnDetail[index].phoneNumber);
         },
       ),
     );

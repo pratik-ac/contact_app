@@ -1,4 +1,5 @@
 import 'package:contact_app/features/contacts/presentation/my_contacts.dart';
+import 'package:contact_app/features/contacts/presentation/widgets/search_contact_cards.dart';
 import 'package:flutter/material.dart';
 import '../data/contacts.dart';
 
@@ -48,25 +49,7 @@ class ContactSearchDelegate extends SearchDelegate<String> {
     return ListView.builder(
       itemCount: match.length,
       itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ListTile(
-            leading: const Icon(
-              Icons.person,
-              color: Colors.red,
-            ),
-            minLeadingWidth: 20,
-            title: Text(match[index].name),
-            subtitle: Text(friend[index].phoneNumber),
-            trailing: IconButton(
-              icon: const Icon(
-                Icons.call,
-                color: Colors.green,
-              ),
-              onPressed: () {},
-            ),
-          ),
-        );
+      return ContactCards(match[index].name, match[index].phoneNumber);
       },
     );
   }
