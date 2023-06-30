@@ -88,7 +88,7 @@ flutter_native_splash:
     # 640 pixels in diameter.
     # App icon without an icon background: This should be 1152×1152 pixels, and fit within a circle
     # 768 pixels in diameter.
-    image: assets/images/splash_call.png #splash lai 50% ko padding
+    image: assets/images/splash_call.png #splash lai 50% ko padding + AI upscale garnu parxa
 
     # Splash screen background color.
     color: "#706e69"
@@ -114,7 +114,7 @@ flutter_launcher_icons:
   ios: true
   adaptive_icon_background: "#03fc39"
   adaptive_icon_foreground: "assets/images/call_icon.png"
-  image_path: "assets/images/call_icon.png" #icon lai 50% ko padding
+  image_path: "assets/images/call_icon.png" #icon lai 50% ko padding + AI upscale garnu pardaina
   min_sdk_android: 21
 
 dev_dependencies:
